@@ -404,7 +404,12 @@ jobs:
           cat runit.sh
           chmod +x runit.sh
           docker pull quay.io/pypa/${{ matrix.piparch }}
-          docker run --rm -v `pwd`:/io quay.io/pypa/${{ matrix.piparch }} ${{ matrix.pre }} /io/runit.sh
+          if [ "${{ matrix.cross }}" ]
+          then
+            docker run --platform=${{matrix.cross}} --rm -v `pwd`:/io quay.io/pypa/${{ matrix.piparch }} ${{ matrix.pre }} /io/runit.sh
+          else
+            docker run --rm -v `pwd`:/io quay.io/pypa/${{ matrix.piparch }} ${{ matrix.pre }} /io/runit.sh
+          fi
 
       - name: List Artifacts
         if: true && !matrix.base
