@@ -171,6 +171,7 @@ jobs:
             configuration: default
             numpy: numpy==1.23.5
             cython: Cython==0.29.35
+            piparch: manylinux2014_aarch64
             cross: linux-aarch64
 
           # OSX py builds
