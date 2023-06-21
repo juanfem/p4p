@@ -166,7 +166,7 @@ jobs:
           # Cross-compiled version for linux-aarch64            
           - name: cross linux-aarch64
             os: ubuntu-latest
-            python: "3.10"
+            pyver: cp310-cp310
             cmp: gcc
             configuration: default
             numpy: numpy==1.23.5
