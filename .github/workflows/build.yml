@@ -363,8 +363,8 @@ jobs:
           python -m ci_core_dumper exec python -m nose2 -v p4p
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
         if: matrix.pyver && !matrix.base && !matrix.source && ${{ matrix.cross }} == "linux-aarch64""
+        uses: docker/setup-qemu-action@v2
         
       - name: Docker PY build
         if: matrix.pyver && !matrix.base && !matrix.source
