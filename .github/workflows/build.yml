@@ -12,6 +12,7 @@ jobs:
       BRPVXS: ${{ matrix.pvxs }}
       # cf. https://github.com/numpy/numpy/issues/22623
       SETUPTOOLS_USE_DISTUTILS: stdlib
+      CI_CROSS_TARGETS: ${{ matrix.cross }}
     strategy:
       fail-fast: false
       matrix:
@@ -188,8 +189,18 @@ jobs:
             numpy: numpy==1.19.3
             cython: Cython==0.29.23
             pre: linux32
-
+            
           # numpy i386 wheels not built >= 3.10
+          
+          # Cross-compiled version for linux-aarch64            
+          - name: cross linux-aarch64
+            os: ubuntu-latest
+            pyver: cp310-cp310
+            cmp: gcc
+            configuration: default
+            numpy: numpy==1.23.5
+            cython: Cython==0.29.35
+            cross: linux-aarch64
 
           # OSX py builds
           - name: osx 2.7 intel
