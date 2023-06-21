@@ -404,9 +404,9 @@ jobs:
           cat runit.sh
           chmod +x runit.sh
           docker pull quay.io/pypa/${{ matrix.piparch }}
-          if [ "${{ matrix.cross }}" ]
+          if [ "${{ matrix.cross }}" == "linux-aarch64" ]
           then
-            docker run --platform=${{matrix.cross}} --rm -v `pwd`:/io quay.io/pypa/${{ matrix.piparch }} ${{ matrix.pre }} /io/runit.sh
+            docker run --platform=linux/arm64 --rm -v `pwd`:/io quay.io/pypa/${{ matrix.piparch }} ${{ matrix.pre }} /io/runit.sh
           else
             docker run --rm -v `pwd`:/io quay.io/pypa/${{ matrix.piparch }} ${{ matrix.pre }} /io/runit.sh
           fi
